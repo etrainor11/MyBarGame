@@ -35,6 +35,7 @@ public class Inventory : MonoBehaviour
         if(playerDrinks[index] == null)
         {
             images[index].sprite = null;
+
         }
     }
 

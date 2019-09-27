@@ -105,6 +105,7 @@ public class Interaction : MonoBehaviour
                                 customerScript.drinksWanted[i] = null;
                                 inventory.playerDrinks[j] = null;
                                 inventory.AssignInventoryDisplay(j);
+                                inventory.itemInInventory = CountItemsInIneventory();
                                 //as well as reset the quality linked to that drink
                                 inventory.drinkQuality[j] = 0;
 
