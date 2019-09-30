@@ -9,8 +9,24 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float turnSpeed;
 
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody2D rigidbody;
+
+    private float xInput;
+    private float yInput;
+
+    private float angle;
+
+    private Vector2 movement;
+    private Vector2 rotation;
+
+    
+
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
     {
         
     }
@@ -18,25 +34,37 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        xInput = Input.GetAxisRaw("Horizontal");
+        yInput = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector2.up * Time.deltaTime * moveSpeed);
-        }
+        Debug.Log("x: " + xInput);
+        Debug.Log("y: " + yInput);
 
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector2.down * Time.deltaTime * moveSpeed);
-        }
+        //rotation = new Vector2(xInput, 0);
 
-        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.forward * Time.deltaTime * turnSpeed);
-        }
+        movement = transform.TransformDirection(new Vector3(0, yInput));
 
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(-Vector3.forward * Time.deltaTime * turnSpeed);
-        }
+        angle -= xInput * turnSpeed;
+        Debug.Log(angle);
+        rotation = new Vector2(angle, 0);
     }
+
+    private void FixedUpdate()
+    {
+        movePlayer(movement);
+        rotatePlayer();
+    }
+
+    void movePlayer(Vector2 direction)
+    {
+        rigidbody.MovePosition((Vector2)transform.position + direction * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void rotatePlayer()
+    {
+        //Quaternion q_rotate = Quaternion.Euler(rotation * Time.deltaTime * turnSpeed);
+        rigidbody.MoveRotation(angle);
+            
+    }
+
 }
