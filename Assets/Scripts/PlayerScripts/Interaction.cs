@@ -37,7 +37,7 @@ public class Interaction : MonoBehaviour
         //check if collider hits the DrinkStorage tag
         if(hit.collider != null)
         {
-            //Debug.Log("hitting" + hit.collider.gameObject.name);
+            Debug.Log("hitting" + hit.collider.gameObject.name);
 
             if(hit.collider.tag == "DrinkStorage")
             {
@@ -128,7 +128,6 @@ public class Interaction : MonoBehaviour
                     }
                 }
             }
-
         }
     }
 

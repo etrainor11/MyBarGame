@@ -10,10 +10,17 @@ public class CustomerScript : MonoBehaviour
     public int drinksNeeded;
     public bool isWaitng;
 
+    private static float s_Speed;
+    [Range(0f,1f)]
+    public float p_Speed;
+
+    [SerializeField]
+    Vector2 targetPosition;
     private void Awake()
     {
         drinksNeeded = drinksWanted.Count;
         isWaitng = true;
+        s_Speed = p_Speed;
     }
 
     public int checkNumberOfDrinksNeeded()
@@ -51,5 +58,11 @@ public class CustomerScript : MonoBehaviour
         //get the customer away - for now just disable
         gameObject.SetActive(false);
     }
+
+    public void customerMove(Vector2 target)
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target, s_Speed);
+    }
+
     
 }

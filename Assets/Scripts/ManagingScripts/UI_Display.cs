@@ -1,30 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class UI_Display : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] taps;
+    [SerializeField]
     private GameObject prefab;
 
-    private void Awake()
+    public Image[] images;
+
+    public GameObject bar;
+
+    void Update()
     {
-        taps = GameObject.FindGameObjectsWithTag("DrinkStorage");
-
-
-        for (int i = 0; i <= taps.Length; i++)
-        {
-
-        }
+     
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    
 }

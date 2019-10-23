@@ -37,15 +37,15 @@ public class Movement : MonoBehaviour
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
 
-        Debug.Log("x: " + xInput);
-        Debug.Log("y: " + yInput);
+        //Debug.Log("x: " + xInput);
+        //Debug.Log("y: " + yInput);
 
         //rotation = new Vector2(xInput, 0);
 
         movement = transform.TransformDirection(new Vector3(0, yInput));
 
         angle -= xInput * turnSpeed;
-        Debug.Log(angle);
+        //Debug.Log(angle);
         rotation = new Vector2(angle, 0);
     }
 
