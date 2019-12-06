@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class QueueController : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> customers;
 
-    [SerializeField]
-    private List<GameObject> inLine;
+
+    public List<GameObject> inLine;
 
     [SerializeField]
     private GameObject queueStartPoint;
@@ -19,8 +20,8 @@ public class QueueController : MonoBehaviour
     [SerializeField]
     private List<Vector3> queuePositions;
 
-    [SerializeField]
-    private int currantQueueNumber;
+    /*[SerializeField]
+    private int currantQueueNumber;*/
 
     private Vector2 spawnPoint;
     [SerializeField]
@@ -28,9 +29,6 @@ public class QueueController : MonoBehaviour
     private enum Direction { LeftToRight, RightToLeft, UpToDown, DownToUp };
     [SerializeField]
     private Direction direction;
-
-    [SerializeField]
-    private float speed;
 
     private void Awake()
     {
@@ -63,7 +61,7 @@ public class QueueController : MonoBehaviour
                 for (int i = 0; i < queueLimit; i++)
                 {
                     queuePositions.Add(target);
-                    target.y++;
+                    target.y--;
                 }
                 break;
             case Direction.UpToDown:
@@ -71,7 +69,7 @@ public class QueueController : MonoBehaviour
                 for (int i = 0; i < queueLimit; i++)
                 {
                     queuePositions.Add(target);
-                    target.y--;
+                    target.y++;
                 }
                 break;
         }
@@ -84,62 +82,46 @@ public class QueueController : MonoBehaviour
     void Start()
     {
         SpawnCustomer();
-        MoveLineUp();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        //to use to simulate new customers entering
+        if(inLine.Count < queueLimit)
         {
-            Debug.Log("spawn");
-            SpawnCustomer();
-            MoveLineUp();
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                SpawnCustomer();
+            }
         }
+        
+
+        MoveLineUp();
     }
 
     public void MoveLineUp()
     {
-        for (int i = inLine.Count; i >= 0; i--)
+        for (int i = 0; i <= inLine.Count - 1; i++)
         {
-            if (i == 0)
+            Debug.Log("MoveLineUp iteration = " + i);
+            if(Vector3.Distance(inLine[i].transform.position, queuePositions[i]) > Mathf.Epsilon)
             {
-                StartCoroutine(MoveLine(queueStartPoint.transform.position, inLine[i]));
-            }
-
-            if(i > 0)
-            {
-
+                CustomerScript customerScript = inLine[i].GetComponent<CustomerScript>();
+                customerScript.customerMove(queuePositions[i]);
             }
         }
     }
 
     void SpawnCustomer()
     {
+        //instantiate customer and obtain a reference of there customerscript
         inLine.Add(Instantiate(customers[0], spawnPoint, Quaternion.identity, gameObject.transform));
-    }
-
-    IEnumerator MoveLine(Vector2 target, GameObject customer)
-    {
-        Vector2 startPosition = customer.transform.position;
-
-        Debug.Log("target position: " + target);
-
-        Debug.Log("start position: " + startPosition);
-
-        Debug.Log("Distance:" + Vector2.Distance(customer.transform.position, target));
-
-        CustomerScript customerScript = customer.GetComponent<CustomerScript>();
-
-        while (Vector2.Distance(customer.transform.position, target) >= Mathf.Epsilon)
-        {
-
-            customerScript.customerMove(target);
-
-
-            yield return null;
-        }
-
-        //Debug.Log("Reached the target!");
+        GameObject newCustomer = GameObject.Find("Customer(Clone)");
+        CustomerScript customerScript = newCustomer.GetComponent<CustomerScript>();
+        
+        //change the name of the customer
+        customerScript.AssignCustomerName();
+       
     }
 }

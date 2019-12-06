@@ -6,13 +6,16 @@ public class CustomerScript : MonoBehaviour
 {
 
     public Customers customersSO;
-    public List<Drink_SO> drinksWanted;
+    public List<Drinks_SO> drinksWanted;
     public int drinksNeeded;
     public bool isWaitng;
 
     private static float s_Speed;
     [Range(0f,1f)]
     public float p_Speed;
+
+    private static int customerNumber = 1;
+
 
     [SerializeField]
     Vector2 targetPosition;
@@ -22,12 +25,13 @@ public class CustomerScript : MonoBehaviour
         isWaitng = true;
         s_Speed = p_Speed;
     }
-
+    
+    //Function to update the number of drinks needed
     public int checkNumberOfDrinksNeeded()
     {
         int r = 0;
 
-        foreach (Drink_SO drinks in drinksWanted)
+        foreach (Drinks_SO drinks in drinksWanted)
         {
             if(drinks != null)
             {
@@ -36,7 +40,8 @@ public class CustomerScript : MonoBehaviour
         }
         return r;
     }
-
+    
+    //Function to examine if the customer needs any more drinks
     public bool checkIfCustomerIsDone (int drinksLeft)
     {
         bool stillWaiting;
@@ -55,14 +60,35 @@ public class CustomerScript : MonoBehaviour
 
     public void customerLeave()
     {
-        //get the customer away - for now just disable
-        gameObject.SetActive(false);
-    }
 
+        //get the customer away & remove them from the list in the queue to allow others to take this space.
+        gameObject.SetActive(false);
+
+        QueueController queueScript = transform.parent.gameObject.GetComponent<QueueController>();
+
+        //the customer served will always be at the front of the queue so just remove the first index element from the list.
+        queueScript.inLine.RemoveAt(0);
+
+        //then move the customers up one in the line for the list
+        queueScript.MoveLineUp();
+        
+    }
+    //Function to move the customer towards the preset target
     public void customerMove(Vector2 target)
     {
         transform.position = Vector2.MoveTowards(transform.position, target, s_Speed);
     }
 
+    //function to assign a customer number based on the incrementing customerNumber int
+    public string AssignCustomerName()
+    {
+
+        gameObject.name = "Customer Number " + customerNumber.ToString();
+        string ret = gameObject.name;
+        customerNumber++;
+        //Debug.Log("Customer number is now: " + customerNumber);
+
+        return ret;
+    }
     
 }

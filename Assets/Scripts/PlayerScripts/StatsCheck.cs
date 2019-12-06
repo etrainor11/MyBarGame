@@ -5,11 +5,11 @@ using UnityEngine;
 public class StatsCheck : MonoBehaviour
 {
 
-    private Inventory inventory;
+    private NewInventory inventory;
 
     private void Awake()
     {
-        inventory = GetComponent<Inventory>();
+        inventory = GetComponent<NewInventory>();
     }
 
     private void Start()

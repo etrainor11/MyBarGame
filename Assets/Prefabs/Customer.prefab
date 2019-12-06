@@ -112,8 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customersSO: {fileID: 11400000, guid: eb3d68c44bb7d464da3989ee889a265f, type: 2}
   drinksWanted:
-  - {fileID: 11400000, guid: 2571f3db81816c1468299d0ac9346bae, type: 2}
-  - {fileID: 11400000, guid: 2571f3db81816c1468299d0ac9346bae, type: 2}
+  - {fileID: 11400000, guid: 3f82d56b2978e324f88efd97748c54be, type: 2}
+  - {fileID: 11400000, guid: 3f82d56b2978e324f88efd97748c54be, type: 2}
   drinksNeeded: 0
   isWaitng: 0
   p_Speed: 0.05

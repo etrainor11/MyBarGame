@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Drink : MonoBehaviour
 {
-    public Drink_SO drink_SOs;
+    public Drinks_SO drinks_SOs;
     public int quality;
 }

@@ -8,14 +8,14 @@ public class Interaction : MonoBehaviour
     [SerializeField]
     private float interactionLength;
 
-    private Inventory inventory;
+    private NewInventory inventory;
 
     [SerializeField]
     private LayerMask mask;
 
     private void Awake()
     {
-        inventory = GetComponent<Inventory>();
+        inventory = GetComponent<NewInventory>();
     }
 
     // Start is called before the first frame update
@@ -28,8 +28,6 @@ public class Interaction : MonoBehaviour
     void Update()
     {
 
-        
-
         //creates a ray and draws it in the scene view
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, interactionLength, mask);
         Debug.DrawRay(transform.position, transform.up * interactionLength, Color.green);
@@ -37,7 +35,7 @@ public class Interaction : MonoBehaviour
         //check if collider hits the DrinkStorage tag
         if(hit.collider != null)
         {
-            Debug.Log("hitting" + hit.collider.gameObject.name);
+            //Debug.Log("hitting" + hit.collider.gameObject.name);
 
             if(hit.collider.tag == "DrinkStorage")
             {
@@ -61,8 +59,9 @@ public class Interaction : MonoBehaviour
                         //set the quality at the same list index;
                         inventory.drinkQuality[x] = collection.drink.quality;
 
-                        inventory.AssignInventoryDisplay(x);
+                        inventory.NewAssignToDisplay(x);
                         inventory.itemInInventory = CountItemsInIneventory();
+                        inventory.ListInventoryItems();
                     }
 
                     else
@@ -88,7 +87,7 @@ public class Interaction : MonoBehaviour
                         for (int j = 0; j < inventory.playerDrinks.Count; j++)
                         {
 
-                            Debug.Log("looking for " + customerScript.drinksWanted[i] + " in customer slot number " + i + " in player slot number " + j);
+                            //Debug.Log("looking for " + customerScript.drinksWanted[i] + " in customer slot number " + i + " in player slot number " + j);
 
 
                             //to avoid a nullreferenceexeption, if the drinks index is null, skip it to the next iteration of the loop
@@ -97,14 +96,14 @@ public class Interaction : MonoBehaviour
                                 continue;
                             }
 
-                            if (customerScript.drinksWanted[i] == inventory.playerDrinks[j].drink_SOs)
+                            if (customerScript.drinksWanted[i] == inventory.playerDrinks[j].drinks_SOs)
                             {
-                                Debug.Log("the player has it in slot "  + j);
+                                //Debug.Log("the player has it in slot "  + j);
                                 
                                 //update inventory and the customers requested items
                                 customerScript.drinksWanted[i] = null;
                                 inventory.playerDrinks[j] = null;
-                                inventory.AssignInventoryDisplay(j);
+                                inventory.NewAssignToDisplay(j);
                                 inventory.itemInInventory = CountItemsInIneventory();
                                 //as well as reset the quality linked to that drink
                                 inventory.drinkQuality[j] = 0;
