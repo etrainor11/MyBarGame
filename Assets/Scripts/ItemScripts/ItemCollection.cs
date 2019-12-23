@@ -19,7 +19,15 @@ public class ItemCollection : MonoBehaviour
     [Tooltip("Distance you want the UI element to be from the drink collection")]
     public float distance;
 
-    //public GameObject linkedUI;
+    private GameObject linkedUI;
+
+    public GameObject LinkedUI
+    {
+        set
+        {
+            linkedUI = value;
+        }
+    }
     private void Awake()
     {
         drink = GetComponent<Drink>();

@@ -10,9 +10,9 @@ public class UI_Display : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
 
-    public Image[] images;
+    public List<GameObject> UIs;
 
-    public GameObject bar;
+    //public GameObject bar;
 
     private Camera camera;
 
@@ -40,19 +40,25 @@ public class UI_Display : MonoBehaviour
             ItemCollection collection = taps[i].GetComponent<ItemCollection>();
             GameObject new_UI = Instantiate(prefab, canvas.transform);
 
+            //add this new ui to the list
+            UIs.Add(new_UI);
 
-            /*switch(collection.side)
+            switch(collection.side)
             {
                 case ItemCollection.Side.Top_Or_Down:
                     new_UI.transform.position = new Vector3(UI_Vector.x, UI_Vector.y + collection.distance, 0);
-                    collection.linkedUI = new_UI;
+                    //collection.linkedUI = new_UI;
                     break;
                 case ItemCollection.Side.Left_Or_Right:
                    new_UI.transform.position = new Vector3(UI_Vector.x + collection.distance, UI_Vector.y, 0);
                     break;
 
-            }*/
+            }
         }
+
+        //now that all the UI have been created and placed, we need to give each UI and associated gameobject
+
+        
 
     }
 

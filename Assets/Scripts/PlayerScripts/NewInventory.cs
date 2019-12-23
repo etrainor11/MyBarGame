@@ -74,4 +74,19 @@ public class NewInventory : MonoBehaviour
             }
         }
     }
+
+    public int CountItemsInIneventory()
+    {
+        int x = 0;
+
+        foreach (Drink drinks in playerDrinks)
+        {
+            if (drinks != null)
+            {
+                x++;
+            }
+        }
+
+        return x;
+    }
 }

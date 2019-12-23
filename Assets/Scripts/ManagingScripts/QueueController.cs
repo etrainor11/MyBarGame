@@ -104,7 +104,7 @@ public class QueueController : MonoBehaviour
     {
         for (int i = 0; i <= inLine.Count - 1; i++)
         {
-            Debug.Log("MoveLineUp iteration = " + i);
+            //Debug.Log("MoveLineUp iteration = " + i);
             if(Vector3.Distance(inLine[i].transform.position, queuePositions[i]) > Mathf.Epsilon)
             {
                 CustomerScript customerScript = inLine[i].GetComponent<CustomerScript>();
