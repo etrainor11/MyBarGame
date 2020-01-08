@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemCollection : MonoBehaviour
 {
@@ -19,10 +20,15 @@ public class ItemCollection : MonoBehaviour
     [Tooltip("Distance you want the UI element to be from the drink collection")]
     public float distance;
 
+    [SerializeField]
     private GameObject linkedUI;
 
     public GameObject LinkedUI
     {
+        get
+        {
+            return linkedUI;
+        }
         set
         {
             linkedUI = value;
@@ -38,5 +44,16 @@ public class ItemCollection : MonoBehaviour
             Debug.LogError("Drink must be set to the drink component attached!", drink);
         }
     }
+
+    public void ToggleUI()
+    {
+        Image[] images = linkedUI.GetComponentsInChildren<Image>();
+        foreach (Image ims in images)
+        {
+            ims.enabled = !ims.enabled;
+        }
+
+    }
+    
 
 }

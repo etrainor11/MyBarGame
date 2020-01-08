@@ -18,32 +18,33 @@ public class UI_Display : MonoBehaviour
 
     private void Awake()
     {
+        //get the camera first thing
         camera = GameObject.Find("Camera").GetComponent<Camera>();
     }
 
     private void Start()
     {
-        //Vector3 vec3 = camera.WorldToScreenPoint(taps[0].transform.position);
+        
         GameObject canvas = GameObject.Find("Canvas");
         Vector3 UI_Vector;
-
-        /*GameObject newUI = Instantiate(prefab, canvas.transform);
-        newUI.transform.position = new Vector3(vec3.x, vec3.y - 20, 0);*/
 
 
         for (int i = 0; i < taps.Length; i++)
         {
+            //obtain screen coordinates of the transform position of each tap
             UI_Vector = camera.WorldToScreenPoint(taps[i].transform.position);
 
             //Debug.Log("screen coordinates are: " + UI_Vector);
 
+            //obatin a reference to each ItemCollection script in all taps
             ItemCollection collection = taps[i].GetComponent<ItemCollection>();
             GameObject new_UI = Instantiate(prefab, canvas.transform);
 
             //add this new ui to the list
             UIs.Add(new_UI);
 
-            switch(collection.side)
+            //assign what direction and distance we want to put the UI based on the taps position
+            switch (collection.side)
             {
                 case ItemCollection.Side.Top_Or_Down:
                     new_UI.transform.position = new Vector3(UI_Vector.x, UI_Vector.y + collection.distance, 0);
@@ -52,14 +53,25 @@ public class UI_Display : MonoBehaviour
                 case ItemCollection.Side.Left_Or_Right:
                    new_UI.transform.position = new Vector3(UI_Vector.x + collection.distance, UI_Vector.y, 0);
                     break;
-
             }
         }
 
-        //now that all the UI have been created and placed, we need to give each UI and associated gameobject
+        for (int i = 0; i < UIs.Count; i++)
+        {
+            Debug.Log("i is " + i);
 
-        
+            //assign the UI to each respective gameobject
+            ItemCollection collection = taps[i].GetComponent<ItemCollection>();
+            collection.LinkedUI = UIs[i];
 
+            //turn of the image components in all the UIs - will be activated when interacted with
+            Image[] images = UIs[i].GetComponentsInChildren<Image>();
+            foreach (Image im in images)
+            {
+                im.enabled = false;
+            }
+        }
+            
     }
 
 

@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f853de0d7924ce445a66f29c15cc5e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TapUI: {fileID: 0}
 --- !u!1 &51000754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1066,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775183810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.47, y: 0.48, z: 1}
+  m_LocalPosition: {x: 3.5, y: 0.5, z: 1}
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1086,6 +1087,7 @@ MonoBehaviour:
   drink: {fileID: 775183815}
   side: 0
   distance: -80
+  linkedUI: {fileID: 0}
 --- !u!114 &775183815
 MonoBehaviour:
   m_ObjectHideFlags: 0
