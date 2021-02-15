@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CustomerScript : MonoBehaviour
 {
+    //this script is to be the central managing script for the customers
 
     public Customers customersSO;
     public List<Drinks_SO> drinksWanted;
@@ -24,6 +25,10 @@ public class CustomerScript : MonoBehaviour
         drinksNeeded = drinksWanted.Count;
         isWaitng = true;
         s_Speed = p_Speed;
+
+        DecideCustomerDrinks decideCustomerDrinks = new DecideCustomerDrinks();
+        decideCustomerDrinks.DrinksCustomerWants(customersSO);
+        
     }
     
     //Function to update the number of drinks needed

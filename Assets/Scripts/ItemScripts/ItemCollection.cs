@@ -22,7 +22,6 @@ public class ItemCollection : MonoBehaviour
 
     [SerializeField]
     private GameObject linkedUI;
-
     public GameObject LinkedUI
     {
         get
@@ -34,6 +33,20 @@ public class ItemCollection : MonoBehaviour
             linkedUI = value;
         }
     }
+
+    [SerializeField]
+    private NewInventory inventory;
+
+    [SerializeField]
+    private float targetTime;
+    public float TargetTime
+    {
+        get
+        {
+            return targetTime;
+        }
+    }
+
     private void Awake()
     {
         drink = GetComponent<Drink>();
@@ -52,8 +65,28 @@ public class ItemCollection : MonoBehaviour
         {
             ims.enabled = !ims.enabled;
         }
-
     }
-    
 
+    public void AddItemToInventory()
+    {
+        if (inventory.itemInInventory < inventory.inventoryCapacity)
+        {
+            Debug.Log("there is space in inventory, now collecting...");
+
+            //set the drink in the first null found on the list
+            int x = inventory.playerDrinks.IndexOf(null);
+            inventory.playerDrinks[x] = drink;
+
+            //set the quality at the same list index;
+            inventory.drinkQuality[x] = drink.quality;
+
+            inventory.NewAssignToDisplay(x);
+            inventory.itemInInventory = inventory.CountItemsInIneventory();
+            inventory.ListInventoryItems();
+        }
+        else
+        {
+            Debug.Log("no space in inventory!");
+        }
+    }
 }
