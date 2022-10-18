@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1efc801db354da4cb28f3d7ed9dc4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customersSO: {fileID: 0}
+  customersSO: {fileID: 11400000, guid: eb3d68c44bb7d464da3989ee889a265f, type: 2}
   drinksWanted:
   - {fileID: 11400000, guid: 3f82d56b2978e324f88efd97748c54be, type: 2}
   - {fileID: 11400000, guid: 3f82d56b2978e324f88efd97748c54be, type: 2}
