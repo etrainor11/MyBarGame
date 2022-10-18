@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class CustomerScript : MonoBehaviour
 {
@@ -22,6 +23,18 @@ public class CustomerScript : MonoBehaviour
     Vector2 targetPosition;
     private void Awake()
     {
+        //load customer types and pick one randomly
+        var customerTypes = Resources.LoadAll("ScriptableObjects/CustomerTypes", typeof(Customers));
+
+        int randomIndex = 0;
+
+        while (randomIndex != 2)
+        {
+            randomIndex = Random.Range(0, customerTypes.Length);
+        }
+
+        customersSO = (Customers)customerTypes[randomIndex];
+
         drinksNeeded = drinksWanted.Count;
         isWaitng = true;
         s_Speed = p_Speed;
