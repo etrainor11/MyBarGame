@@ -39,9 +39,6 @@ public class CustomerScript : MonoBehaviour
         isWaitng = true;
         s_Speed = p_Speed;
 
-        DecideCustomerDrinks decideCustomerDrinks = new DecideCustomerDrinks();
-        decideCustomerDrinks.DrinksCustomerWants(customersSO);
-        
     }
     
     //Function to update the number of drinks needed
