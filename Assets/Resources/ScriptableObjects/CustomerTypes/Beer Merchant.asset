@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb6571f195f36b46b45228e6d759bb4, type: 3}
   m_Name: Beer Merchant
   m_EditorClassIdentifier: 
-  drinks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  drinks_SO: []
