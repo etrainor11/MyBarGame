@@ -119,6 +119,9 @@ public class QueueController : MonoBehaviour
         inLine.Add(Instantiate(customers[0], spawnPoint, Quaternion.identity, gameObject.transform));
         GameObject newCustomer = GameObject.Find("Customer(Clone)");
         CustomerScript customerScript = newCustomer.GetComponent<CustomerScript>();
+
+        StatsDisplayer statsDisplayer = GameObject.Find("Canvas").GetComponent<StatsDisplayer>();
+        statsDisplayer.IncrementCustomerAmount();
         
         //change the name of the customer
         customerScript.AssignCustomerName();
