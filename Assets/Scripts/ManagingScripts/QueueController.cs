@@ -113,7 +113,7 @@ public class QueueController : MonoBehaviour
         }
     }
 
-    void SpawnCustomer()
+    public void SpawnCustomer()
     {
         //instantiate customer and obtain a reference of there customerscript
         inLine.Add(Instantiate(customers[0], spawnPoint, Quaternion.identity, gameObject.transform));

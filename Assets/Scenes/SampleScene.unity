@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 51000755}
   m_Layer: 0
   m_Name: Queue
-  m_TagString: Untagged
+  m_TagString: Q
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2317,6 +2317,8 @@ GameObject:
   - component: {fileID: 1297006092}
   - component: {fileID: 1297006093}
   - component: {fileID: 1297006094}
+  - component: {fileID: 1297006095}
+  - component: {fileID: 1297006096}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2373,7 +2375,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297006089}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56aaa2a8c241241488038371395b98d5, type: 3}
   m_Name: 
@@ -2393,6 +2395,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalCustomersSpawned: 0
+--- !u!114 &1297006095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297006089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe191ff148faeaa4ab1f07ffd9f27c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTime: 0
+  minimumRespawnTime: 10
+  maximumRespawnTime: 20
+  respawnTime: 0
+--- !u!114 &1297006096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297006089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a98bc80fba1c84780a1536aac74b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumberOfCustomersForLevel: 20
+  MoneyNeeded:
+  - 0
+  - 0
+  - 0
+  MaxCustomersAllowedAtSingleTime: 5
 --- !u!1 &1349825313
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,7 +3268,7 @@ GameObject:
   - component: {fileID: 1907028535}
   m_Layer: 0
   m_Name: Queue (1)
-  m_TagString: Untagged
+  m_TagString: Q
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
